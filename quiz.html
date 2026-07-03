@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Quiz - HGIANG HỌC TIẾNG HÀN</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+display:flex;
+background:#f4f7fb;
+height:100vh;
+}
+
+.sidebar{
+width:250px;
+background:#122c5a;
+color:white;
+padding:30px 20px;
+}
+
+.logo{
+text-align:center;
+margin-bottom:40px;
+}
+
+.logo-circle{
+
+width:70px;
+height:70px;
+border-radius:50%;
+background:white;
+color:#122c5a;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:28px;
+font-weight:bold;
+
+margin:auto;
+margin-bottom:15px;
+
+}
+
+.menu{
+
+list-style:none;
+
+}
+
+.menu li{
+
+margin-bottom:12px;
+
+}
+
+.menu a{
+
+display:block;
+
+padding:14px;
+
+border-radius:10px;
+
+color:white;
+
+text-decoration:none;
+
+transition:.25s;
+
+}
+
+.menu a:hover{
+
+background:rgba(255,255,255,.15);
+
+}
+
+.active{
+
+background:white;
+
+color:#122c5a !important;
+
+font-weight:bold;
+
+}
+
+.content{
+
+flex:1;
+
+padding:40px;
+
+}
+
+.title{
+
+font-size:34px;
+
+font-weight:bold;
+
+color:#122c5a;
+
+margin-bottom:30px;
+
+}
+
+.quiz-box{
+
+background:white;
+
+border-radius:20px;
+
+padding:35px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.score{
+
+font-size:20px;
+
+font-weight:bold;
+
+margin-bottom:25px;
+
+}
+
+.question{
+
+font-size:42px;
+
+font-weight:bold;
+
+text-align:center;
+
+margin-bottom:35px;
+
+color:#122c5a;
+
+}
+
+.option{
+
+width:100%;
+
+padding:18px;
+
+margin-bottom:15px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:12px;
+
+background:#eef2ff;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.option:hover{
+
+background:#dbe5ff;
+
+}
+
+.result{
+
+margin-top:20px;
+
+text-align:center;
+
+font-size:24px;
+
+font-weight:bold;
+
+}
+
+.next{
+
+margin-top:25px;
+
+padding:13px 25px;
+
+background:#122c5a;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+display:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<div class="logo-circle">
+
+HG
+
+</div>
+
+<h2>
+
+HGIANG<br>
+
+HỌC TIẾNG HÀN
+
+</h2>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="index.html">🏠 Dashboard</a></li>
+
+<li><a href="library.html">📚 Thư viện</a></li>
+
+<li><a href="flashcard.html">🎴 Flashcard</a></li>
+
+<li><a class="active" href="quiz.html">📝 Quiz</a></li>
+
+<li><a href="chinese.html">⌨️ Học tiếng Trung</a></li>
+
+<li><a href="#">📊 Thống kê</a></li>
+
+<li><a href="#">⚙️ Cài đặt</a></li>
+
+</ul>
+
+</div>
+
+<div class="content">
+
+<div class="title">
+
+📝 Quiz
+
+</div>
+
+<div class="quiz-box">
+
+<div
+class="score"
+id="quizScore">
+
+✅ Đúng: 0 | ❌ Sai: 0
+
+</div>
+
+<div
+class="question"
+id="question">
+
+Chưa có dữ liệu
+
+</div>
+
+<div id="answers">
+
+</div>
+
+<div
+class="result"
+id="quizResult">
+
+</div>
+
+<button
+
+class="next"
+
+id="nextQuiz"
+
+onclick="generateQuiz()">
+
+➡️ Tiếp tục
+
+</button>
+
+</div>
+
+</div>
+<script>
+
+let words = JSON.parse(localStorage.getItem("words")) || [];
+
+let correctCount = 0;
+let wrongCount = 0;
+let answered = false;
+
+let quizOrder = [];
+let quizPosition = 0;
+
+function shuffleQuiz(){
+
+    quizOrder = [];
+
+    for(let i=0;i<words.length;i++){
+        quizOrder.push(i);
+    }
+
+    quizOrder.sort(()=>Math.random()-0.5);
+
+    quizPosition = 0;
+
+}
+
+function generateQuiz(){
+
+    answered = false;
+
+    document.getElementById("quizResult").innerHTML = "";
+
+    document.getElementById("nextQuiz").style.display="none";
+
+    words = JSON.parse(localStorage.getItem("words")) || [];
+
+    if(words.length < 4){
+
+        document.getElementById("question").innerHTML =
+        "Cần ít nhất 4 từ vựng";
+
+        document.getElementById("answers").innerHTML = "";
+
+        return;
+
+    }
+
+    if(
+        quizOrder.length===0 ||
+        quizPosition>=quizOrder.length
+    ){
+
+        shuffleQuiz();
+
+    }
+
+    const correct =
+    words[
+        quizOrder[quizPosition]
+    ];
+
+    quizPosition++;
+
+    document.getElementById("question").innerHTML =
+    correct.korean;
+
+    let options = [correct.meaning];
+
+    while(options.length < 4){
+
+        let random =
+        words[
+            Math.floor(Math.random()*words.length)
+        ].meaning;
+
+        if(!options.includes(random)){
+            options.push(random);
+        }
+
+    }
+
+    options.sort(()=>Math.random()-0.5);
+
+    let html="";
+
+    options.forEach(option=>{
+
+        html += `
+        <button
+        class="option"
+        data-answer="${option}"
+        onclick="checkAnswer('${option}','${correct.meaning}')">
+
+        ${option}
+
+        </button>
+        `;
+
+    });
+
+    document.getElementById("answers").innerHTML = html;
+
+}
+
+function checkAnswer(selected,correct){
+
+    if(answered) return;
+
+    answered = true;
+
+    let buttons =
+    document.querySelectorAll(".option");
+
+    buttons.forEach(btn=>{
+
+        btn.disabled=true;
+
+        if(btn.dataset.answer===correct){
+
+            btn.style.background="#4CAF50";
+            btn.style.color="white";
+
+        }
+
+        if(
+            btn.dataset.answer===selected &&
+            selected!==correct
+        ){
+
+            btn.style.background="#f44336";
+            btn.style.color="white";
+
+        }
+
+    });
+
+    if(selected===correct){
+
+        correctCount++;
+
+        document.getElementById("quizResult").innerHTML =
+        "✅ Chính xác";
+
+        document.getElementById("quizResult").style.color =
+        "green";
+
+    }else{
+
+        wrongCount++;
+
+        document.getElementById("quizResult").innerHTML =
+        "❌ Sai rồi";
+
+        document.getElementById("quizResult").style.color =
+        "red";
+
+    }
+
+    document.getElementById("quizScore").innerHTML =
+
+    `✅ Đúng: ${correctCount} | ❌ Sai: ${wrongCount}`;
+
+    document.getElementById("nextQuiz").style.display =
+    "inline-block";
+
+}
+
+generateQuiz();
+
+</script>
+
+</body>
+</html>
