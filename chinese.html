@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Học tiếng Trung - HGIANG HỌC TIẾNG HÀN</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+display:flex;
+background:#f4f7fb;
+height:100vh;
+}
+
+.sidebar{
+width:250px;
+background:#122c5a;
+color:white;
+padding:30px 20px;
+}
+
+.logo{
+text-align:center;
+margin-bottom:40px;
+}
+
+.logo-circle{
+width:70px;
+height:70px;
+background:white;
+color:#122c5a;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+font-weight:bold;
+margin:auto;
+margin-bottom:15px;
+}
+
+.menu{
+list-style:none;
+}
+
+.menu li{
+margin-bottom:12px;
+}
+
+.menu a{
+display:block;
+padding:14px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+transition:.25s;
+}
+
+.menu a:hover{
+background:rgba(255,255,255,.15);
+}
+
+.active{
+background:white;
+color:#122c5a !important;
+font-weight:bold;
+}
+
+.content{
+flex:1;
+padding:40px;
+}
+
+.title{
+font-size:34px;
+font-weight:bold;
+color:#122c5a;
+margin-bottom:30px;
+}
+
+.study-box{
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.meaning{
+
+font-size:42px;
+
+font-weight:bold;
+
+text-align:center;
+
+margin-bottom:35px;
+
+color:#122c5a;
+
+}
+
+input{
+
+width:100%;
+
+padding:18px;
+
+font-size:28px;
+
+border-radius:12px;
+
+border:1px solid #ccc;
+
+outline:none;
+
+}
+
+.buttons{
+
+margin-top:25px;
+
+display:flex;
+
+gap:15px;
+
+}
+
+button{
+
+padding:14px 25px;
+
+border:none;
+
+border-radius:10px;
+
+background:#122c5a;
+
+color:white;
+
+font-size:17px;
+
+cursor:pointer;
+
+}
+
+.result{
+
+margin-top:30px;
+
+font-size:26px;
+
+font-weight:bold;
+
+text-align:center;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+<div class="logo-circle">
+
+HG
+
+</div>
+
+<h2>
+
+HGIANG<br>
+
+HỌC TIẾNG HÀN
+
+</h2>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="index.html">🏠 Dashboard</a></li>
+
+<li><a href="library.html">📚 Thư viện</a></li>
+
+<li><a href="flashcard.html">🎴 Flashcard</a></li>
+
+<li><a href="quiz.html">📝 Quiz</a></li>
+
+<li><a class="active" href="chinese.html">⌨️ Học tiếng Trung</a></li>
+
+<li><a href="#">📊 Thống kê</a></li>
+
+<li><a href="#">⚙️ Cài đặt</a></li>
+
+</ul>
+
+</div>
+
+<div class="content">
+
+<div class="title">
+
+⌨️ Học tiếng Trung
+
+</div>
+
+<div class="study-box">
+
+<div
+
+class="meaning"
+
+id="chinaQuestion">
+
+Đang tải...
+
+</div>
+
+<input
+
+id="chinaAnswer"
+
+placeholder="Nhập từ tiếng Hàn / Trung">
+
+<div class="buttons">
+
+<button onclick="checkChinaAnswer()">
+
+Kiểm tra
+
+</button>
+
+<button onclick="showChinaAnswer()">
+
+Hiện đáp án
+
+</button>
+
+<button
+
+id="chinaNextBtn"
+
+style="display:none;"
+
+onclick="nextChinaQuestion()">
+
+Next
+
+</button>
+
+</div>
+
+<div
+
+class="result"
+
+id="chinaResult">
+
+</div>
+
+</div>
+
+</div>
+<script>
+
+let words = JSON.parse(localStorage.getItem("words")) || [];
+
+let chinaOrder = [];
+let chinaPosition = 0;
+let currentChinaWord = null;
+
+function shuffleChina(){
+
+    chinaOrder = [];
+
+    for(let i=0;i<words.length;i++){
+        chinaOrder.push(i);
+    }
+
+    chinaOrder.sort(()=>Math.random()-0.5);
+
+    chinaPosition = 0;
+
+}
+
+function nextChinaQuestion(){
+
+    words = JSON.parse(localStorage.getItem("words")) || [];
+
+    if(words.length===0){
+
+        document.getElementById("chinaQuestion").innerHTML =
+        "Chưa có từ vựng";
+
+        return;
+
+    }
+
+    if(
+        chinaOrder.length===0 ||
+        chinaPosition>=chinaOrder.length
+    ){
+
+        shuffleChina();
+
+    }
+
+    currentChinaWord =
+    words[
+        chinaOrder[chinaPosition]
+    ];
+
+    chinaPosition++;
+
+    document.getElementById("chinaQuestion").innerHTML =
+    currentChinaWord.meaning;
+
+    document.getElementById("chinaAnswer").value="";
+
+    document.getElementById("chinaResult").innerHTML="";
+
+    document.getElementById("chinaNextBtn").style.display =
+    "none";
+
+    document.getElementById("chinaAnswer").focus();
+
+}
+
+function checkChinaAnswer(){
+
+    if(!currentChinaWord) return;
+
+    const answer =
+    document
+    .getElementById("chinaAnswer")
+    .value
+    .trim();
+
+    if(answer===currentChinaWord.korean){
+
+        document.getElementById("chinaResult").innerHTML=
+
+        `
+        ✅ Chính xác
+
+        <br><br>
+
+        ${currentChinaWord.korean}
+
+        <br>
+
+        ${currentChinaWord.pronunciation}
+        `;
+
+        document.getElementById("chinaResult").style.color =
+        "green";
+
+        document.getElementById("chinaNextBtn").style.display =
+        "inline-block";
+
+    }else{
+
+        document.getElementById("chinaResult").innerHTML=
+
+        "❌ Sai rồi";
+
+        document.getElementById("chinaResult").style.color =
+        "red";
+
+    }
+
+}
+
+function showChinaAnswer(){
+
+    if(!currentChinaWord) return;
+
+    document.getElementById("chinaResult").innerHTML=
+
+    `
+    📖 Đáp án
+
+    <br><br>
+
+    ${currentChinaWord.korean}
+
+    <br>
+
+    ${currentChinaWord.pronunciation}
+    `;
+
+    document.getElementById("chinaResult").style.color =
+    "#122c5a";
+
+    document.getElementById("chinaNextBtn").style.display =
+    "inline-block";
+
+}
+
+document
+.getElementById("chinaAnswer")
+.addEventListener("keydown",function(e){
+
+    if(e.key==="Enter"){
+
+        e.preventDefault();
+        checkChinaAnswer();
+
+    }
+
+    if(e.key==="ArrowRight"){
+
+        e.preventDefault();
+
+        if(document.getElementById("chinaNextBtn").style.display!=="none"){
+
+            nextChinaQuestion();
+
+        }
+
+    }
+
+});
+
+nextChinaQuestion();
+
+</script>
+
+</body>
+</html>
