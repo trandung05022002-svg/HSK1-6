@@ -1,64 +1,50 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>VUA TRÒ CHƠI</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>HGIANG HỌC TIẾNG HÀN</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:#f3f6fb;
+background:#f4f7fb;
 display:flex;
 min-height:100vh;
 }
 
 .sidebar{
 width:260px;
-background:#153d77;
+background:#122c5a;
 color:white;
-position:fixed;
-left:0;
-top:0;
-bottom:0;
 padding:30px 20px;
 }
 
 .logo{
+font-size:24px;
+font-weight:bold;
 text-align:center;
 margin-bottom:40px;
 }
 
 .logo-circle{
-width:80px;
-height:80px;
+width:70px;
+height:70px;
 border-radius:50%;
 background:white;
-color:#153d77;
+color:#122c5a;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:32px;
-font-weight:bold;
-margin:auto;
-margin-bottom:15px;
-}
-
-.logo h1{
 font-size:26px;
-line-height:35px;
+font-weight:bold;
+margin:0 auto 15px;
 }
 
 .menu{
@@ -66,383 +52,916 @@ list-style:none;
 }
 
 .menu li{
-margin-bottom:12px;
+padding:14px;
+margin-bottom:10px;
+border-radius:10px;
+cursor:pointer;
 }
 
-.menu a{
-display:block;
-padding:15px 18px;
-border-radius:12px;
-color:white;
-text-decoration:none;
-transition:.25s;
-font-size:16px;
-}
-
-.menu a:hover{
+.menu li:hover{
 background:rgba(255,255,255,.15);
 }
 
 .content{
-margin-left:260px;
-padding:40px;
-width:calc(100% - 260px);
+flex:1;
+padding:25px;
 }
 
-.page-title{
-font-size:36px;
+.top-title{
+font-size:30px;
 font-weight:bold;
-color:#153d77;
-margin-bottom:35px;
+margin-bottom:25px;
 }
 
 .cards{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
-margin-bottom:40px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
 }
 
 .card{
 background:white;
+padding:20px;
 border-radius:20px;
-padding:28px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 .card h3{
-font-size:15px;
-color:#777;
+color:#888;
+margin-bottom:10px;
+}
+
+.big{
+font-size:32px;
+font-weight:bold;
+color:#122c5a;
+}
+
+.section{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+margin-bottom:20px;
+}
+
+.section h2{
 margin-bottom:15px;
 }
 
-.number{
-font-size:38px;
+.flashcard{
+height:220px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:40px;
 font-weight:bold;
-color:#153d77;
+background:#f6f8fd;
+border-radius:15px;
+color:#122c5a;
 }
 
-.section-title{
-font-size:28px;
-font-weight:bold;
-margin-bottom:20px;
-color:#153d77;
+.quiz-box{
+padding:20px;
+background:#f6f8fd;
+border-radius:15px;
 }
 
-.function-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-}
-
-.function-box{
-background:white;
-border-radius:20px;
-padding:35px;
+.btn{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#122c5a;
+color:white;
 cursor:pointer;
-text-align:center;
-transition:.25s;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
-
-.function-box:hover{
-transform:translateY(-8px);
-}
-
-.function-icon{
-font-size:60px;
-margin-bottom:20px;
-}
-
-.function-name{
-font-size:24px;
-font-weight:bold;
-margin-bottom:10px;
-color:#153d77;
-}
-
-.function-desc{
-color:#666;
-line-height:25px;
-font-size:15px;
-}
-
-@media(max-width:1200px){
-
-.cards{
-grid-template-columns:repeat(2,1fr);
-}
-
-.function-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
+margin-top:15px;
 }
 
 @media(max-width:768px){
 
+body{
+flex-direction:column;
+}
+
 .sidebar{
-position:relative;
 width:100%;
 }
 
 .content{
-margin-left:0;
-width:100%;
-padding:20px;
+padding:15px;
 }
 
-.cards{
-grid-template-columns:1fr;
-}
-
-.function-grid{
-grid-template-columns:1fr;
+.flashcard{
+font-size:28px;
 }
 
 }
-
 </style>
-
 </head>
+
 <body>
 
 <div class="sidebar">
 
-    <div class="logo">
+<div class="logo">
+<div class="logo-circle">HG</div>
+HGIANG<br>HỌC TIẾNG HÀN
+</div>
 
-        <div class="logo-circle">
-            👑
-        </div>
-
-        <h1>VUA<br>TRÒ CHƠI</h1>
-
-    </div>
-
-    <ul class="menu">
-
-        <li>
-            <a href="index.html">
-                🏠 Trang chủ
-            </a>
-        </li>
-
-        <li>
-            <a href="library.html">
-                📚 Thư viện
-            </a>
-        </li>
-
-        <li>
-            <a href="flashcard.html">
-                🎴 Flashcard
-            </a>
-        </li>
-
-        <li>
-            <a href="quiz.html">
-                📝 Quiz
-            </a>
-        </li>
-
-        <li>
-            <a href="chinese.html">
-                🎯 Học tiếng Trung
-            </a>
-        </li>
-
-        <li>
-            <a href="review.html">
-                📖 Review
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                📊 Thống kê
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                ⚙️ Cài đặt
-            </a>
-        </li>
-
-    </ul>
+<ul class="menu">
+<li>🏠 Dashboard</li>
+<li>
+<a href="library.html"
+style="color:white;text-decoration:none;">
+📚 Thư viện
+</a>
+</li>
+<li>🎴 Flashcard</li>
+<li>📝 Quiz</li>
+<li>🎮 Trò chơi</li>
+<li>📊 Thống kê</li>
+<li>⚙️ Cài đặt</li>
+</ul>
 
 </div>
 
 <div class="content">
 
-    <div class="page-title">
+<div class="top-title">
+🇰🇷 HGIANG HỌC TIẾNG HÀN
+</div>
 
-        👑 VUA TRÒ CHƠI
+<div class="cards">
 
-    </div>
+<div class="card">
+<h3>Tổng từ vựng</h3>
+<div class="big" id="totalWords">0</div>
+</div>
 
-    <div class="cards">
+<div class="card">
+<h3>Đã học</h3>
+<div class="big">0</div>
+</div>
 
-        <div class="card">
-            <h3>Tổng từ vựng</h3>
-            <div class="number" id="totalWords">0</div>
-        </div>
+<div class="card">
+<h3>Điểm số</h3>
+<div class="big">0</div>
+</div>
 
-        <div class="card">
-            <h3>Đã học</h3>
-            <div class="number">0</div>
-        </div>
-
-        <div class="card">
-            <h3>Yêu thích</h3>
-            <div class="number">0</div>
-        </div>
-
-        <div class="card">
-            <h3>Chuỗi ngày học</h3>
-            <div class="number">0</div>
-        </div>
-
-    </div>
-
-    <div class="section-title">
-
-        Chọn chế độ học
-
-    </div>
-
-    <div class="function-grid">
-
-        <div class="function-box"
-             onclick="location.href='flashcard.html'">
-
-            <div class="function-icon">
-                🎴
-            </div>
-
-            <div class="function-name">
-                Flashcard
-            </div>
-
-            <div class="function-desc">
-                Học từ vựng bằng thẻ ghi nhớ.
-            </div>
-
-        </div>
-
-        <div class="function-box"
-             onclick="location.href='quiz.html'">
-
-            <div class="function-icon">
-                📝
-            </div>
-
-            <div class="function-name">
-                Quiz
-            </div>
-
-            <div class="function-desc">
-                Luyện tập bằng câu hỏi trắc nghiệm.
-            </div>
-
-        </div>
-
-        <div class="function-box"
-             onclick="location.href='chinese.html'">
-
-            <div class="function-icon">
-                🎯
-            </div>
-
-            <div class="function-name">
-                Học tiếng Trung
-            </div>
-
-            <div class="function-desc">
-                Luyện gõ Hán tự theo nghĩa tiếng Việt.
-            </div>
-
-        </div>
-
-        <div class="function-box"
-             onclick="location.href='library.html'">
-
-            <div class="function-icon">
-                📚
-            </div>
-
-            <div class="function-name">
-                Thư viện
-            </div>
-
-            <div class="function-desc">
-                Quản lý toàn bộ từ vựng.
-            </div>
-
-        </div>
-
-        <div class="function-box"
-             onclick="location.href='review.html'">
-
-            <div class="function-icon">
-                📖
-            </div>
-
-            <div class="function-name">
-                Review
-            </div>
-
-            <div class="function-desc">
-                Ôn tập các từ đã học.
-            </div>
-
-        </div>
-
-        <div class="function-box">
-
-            <div class="function-icon">
-                📈
-            </div>
-
-            <div class="function-name">
-                Thống kê
-            </div>
-
-            <div class="function-desc">
-                Theo dõi tiến độ học tập của bạn.
-            </div>
-
-        </div>
-
-    </div>
-        <br><br>
-
-    <div class="card">
-
-        <h3 style="margin-bottom:20px;">🚀 Bắt đầu học ngay</h3>
-
-        <p style="color:#666;font-size:16px;line-height:28px;">
-
-            Chào mừng bạn đến với <b>VUA TRÒ CHƠI</b>.
-
-            Đây là trung tâm học tiếng Trung của bạn.
-
-            Hãy chọn một chế độ học ở phía trên để bắt đầu.
-
-        </p>
-
-    </div>
+<div class="card">
+<h3>Chuỗi ngày học</h3>
+<div class="big">0</div>
+</div>
 
 </div>
 
+<div class="section">
+<h2>📔 Flashcard</h2>
+<div style="text-align:center;padding:20px;">
+
+<div id="flashcard"
+style="
+background:#f5f7ff;
+padding:60px 20px;
+border-radius:20px;
+font-size:30px;
+font-weight:bold;
+margin-bottom:20px;
+cursor:pointer;
+">
+안녕하세요
+</div>
+
+<div id="meaningBox"
+style="
+font-size:20px;
+display:none;
+margin-bottom:20px;
+">
+annyeonghaseyo<br>
+Xin chào
+</div>
+
+<button onclick="toggleMeaning()"
+style="
+padding:10px 20px;
+background:#122c5a;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+">
+Hiện nghĩa
+</button>
+
+<br><br>
+
+<button onclick="prevCard()"
+style="
+padding:10px 20px;
+background:#122c5a;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+">
+← Trước
+</button>
+
+<button onclick="nextCard()"
+style="
+padding:10px 20px;
+background:#122c5a;
+color:white;
+border:none;
+border-radius:8px;
+margin-left:10px;
+cursor:pointer;
+font-size:14px;    
+">
+Sau →
+</button>
+
+</div>
+<h2>📝 Quiz</h2>
+<div id="quizScore" style="
+margin-bottom:15px;
+font-weight:bold;
+font-size:18px;
+">
+✅ Đúng: 0 | ❌ Sai: 0
+</div>
+<div class="quiz-box" id="quizBox">
+
+<button onclick="generateQuiz()"
+style="
+padding:10px 20px;
+background:#122c5a;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+">
+Tạo câu hỏi
+</button>
+
+<div id="quizContent" style="margin-top:20px;"></div>
+
+<div id="quizResult" style="margin-top:15px;font-weight:bold;"></div>
+
+<button id="nextQuizBtn"
+onclick="generateQuiz()"
+style="display:none;padding:10px 20px;margin-top:10px;background:#122c5a;color:white;border:none;border-radius:8px;">
+➡️ Tiếp tục
+</button>
+
+<div id="quizResult"
+style="
+margin-top:15px;
+font-size:22px;
+font-weight:bold;
+text-align:center;
+">
+</div>    
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>🎮 Học tiếng Trung</h2>
+
+<div id="chinaGame">
+
+<div id="chinaQuestion"
+style="
+font-size:28px;
+font-weight:bold;
+margin-bottom:20px;
+">
+Chưa có dữ liệu
+</div>
+
+<input
+id="chinaAnswer"
+placeholder="Nhập từ tiếng Trung"
+style="
+padding:12px;
+width:100%;
+font-size:18px;
+border-radius:8px;
+border:1px solid #ccc;
+">
+
+<br><br>
+
+<button
+onclick="checkChinaAnswer()"
+class="btn">
+Kiểm tra
+</button>
+
+<button
+onclick="showChinaAnswer()"
+class="btn">
+Hiện đáp án
+</button>
+
+<button
+id="chinaNextBtn"
+onclick="nextChinaQuestion()"
+class="btn"
+style="display:none;">
+Next
+</button>
+
+<div
+id="chinaResult"
+style="
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+">
+</div>
+
+</div>
+
+</div>
+    
+<div style="background:white;margin:20px;padding:20px;border-radius:20px;">
+    <h2>➕ Thêm từ vựng</h2>
+
+    <input id="korean" placeholder="Tiếng Hàn"
+        style="padding:10px;margin:5px;">
+
+    <input id="pronunciation" placeholder="Phiên âm"
+        style="padding:10px;margin:5px;">
+
+    <input id="meaning" placeholder="Nghĩa"
+        style="padding:10px;margin:5px;">
+
+    <button onclick="addWord()"
+        style="padding:10px 20px;background:#122c5a;color:white;border:none;border-radius:8px;">
+        Thêm từ
+    </button>
+<br><br>
+
+<input type="file" id="excelFile">
+
+<button onclick="importExcel()"
+style="padding:10px 20px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+margin-left:10px;">
+Import Excel
+</button>
+<button onclick="deleteAllWords()"
+style="
+padding:10px 20px;
+background:red;
+color:white;
+border:none;
+border-radius:8px;
+margin-left:10px;
+cursor:pointer;
+">
+🗑 Xóa tất cả
+</button>    
+    <div id="wordList" style="margin-top:20px;"></div>
+</div>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script>
+let words = JSON.parse(localStorage.getItem('words')) || [];
 
-let words = JSON.parse(localStorage.getItem("words")) || [];
+let correctCount = 0;
+let wrongCount = 0; 
+let answered = false;    
 
-document.getElementById("totalWords").innerText = words.length;
+let quizOrder = [];
+let quizPosition = 0;
 
+let chinaOrder = [];
+let chinaPosition = 0;
+let currentChinaWord = null;
+    
+function renderWords() {
+    let html = '';
+
+words.forEach((word,index) => {
+html += `
+<div style="padding:10px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;">
+    <span>
+        <b>${word.korean}</b> - ${word.pronunciation} - ${word.meaning}
+    </span>
+
+    <button onclick="deleteWord(${index})"
+        style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+        X
+    </button>
+</div>
+`;
+    });
+
+    document.getElementById('wordList').innerHTML = html;
+    document.getElementById('totalWords').innerText = words.length;
+}
+
+function addWord() {
+
+    const korean =
+        document.getElementById('korean').value;
+
+    const pronunciation =
+        document.getElementById('pronunciation').value;
+
+    const meaning =
+        document.getElementById('meaning').value;
+
+    if (!korean || !meaning) return;
+
+    words.push({
+        korean,
+        pronunciation,
+        meaning
+    });
+
+    localStorage.setItem(
+        'words',
+        JSON.stringify(words)
+    );
+
+    renderWords();
+
+    document.getElementById('korean').value = '';
+    document.getElementById('pronunciation').value = '';
+    document.getElementById('meaning').value = '';
+}
+function deleteWord(index){
+
+    words.splice(index,1);
+
+    localStorage.setItem(
+        'words',
+        JSON.stringify(words)
+    );
+
+    renderWords();
+}
+function importExcel(){
+
+    const file =
+    document.getElementById('excelFile').files[0];
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        const data = new Uint8Array(e.target.result);
+
+        const workbook =
+        XLSX.read(data,{type:'array'});
+
+        const sheet =
+        workbook.Sheets[workbook.SheetNames[0]];
+
+        const rows =
+        XLSX.utils.sheet_to_json(sheet,{header:1});
+
+        rows.slice(1).forEach(row=>{
+
+            if(row[0]){
+
+                words.push({
+                    korean: row[0] || "",
+                    pronunciation: row[1] || "",
+                    meaning: row[2] || ""
+                });
+
+            }
+
+        });
+
+        localStorage.setItem(
+            'words',
+            JSON.stringify(words)
+        );
+
+        renderWords();
+
+        alert("Import thành công!");
+    };
+
+    reader.readAsArrayBuffer(file);
+}
+let currentCard = 0;
+let showMeaning = false;
+
+function renderFlashcard(){
+
+    if(words.length === 0){
+        document.getElementById("flashcardBox").innerHTML =
+        "Chưa có từ vựng";
+        return;
+    }
+
+    let word = words[currentCard];
+
+    if(showMeaning){
+
+        document.getElementById("flashcardBox").innerHTML =
+        `
+        <div>
+            <div>${word.korean}</div>
+            <hr>
+            <div>${word.pronunciation}</div>
+            <div>${word.meaning}</div>
+        </div>
+        `;
+
+    }else{
+
+        document.getElementById("flashcardBox").innerHTML =
+        word.korean;
+
+    }
+}
+
+document.addEventListener("click",function(e){
+
+    if(e.target.id==="flashcardBox"){
+        showMeaning=!showMeaning;
+        renderFlashcard();
+    }
+
+});
+
+function nextCard(){
+
+    if(words.length===0) return;
+
+    currentCard++;
+
+    if(currentCard>=words.length){
+        currentCard=0;
+    }
+
+    showMeaning=false;
+    renderFlashcard();
+}
+
+function prevCard(){
+
+    if(words.length===0) return;
+
+    currentCard--;
+
+    if(currentCard<0){
+        currentCard=words.length-1;
+    }
+
+    showMeaning=false;
+    renderFlashcard();
+}
+function generateQuiz(){
+    
+answered = false;
+    document.getElementById("quizResult").innerHTML = "";
+    document.getElementById("nextQuizBtn").style.display = "none";
+    if(words.length < 4){
+        alert("Cần ít nhất 4 từ");
+        return;
+    }
+
+    if(
+    quizOrder.length === 0 ||
+    quizPosition >= quizOrder.length
+){
+    shuffleQuiz();
+}
+
+const correct =
+words[
+    quizOrder[quizPosition]
+];
+
+quizPosition++;
+
+    let options = [correct.meaning];
+
+    while(options.length < 4){
+
+        let random =
+        words[Math.floor(Math.random()*words.length)].meaning;
+
+        if(!options.includes(random)){
+            options.push(random);
+        }
+    }
+
+    options.sort(() => Math.random() - 0.5);
+
+    let html =
+    `<h3>${correct.korean} nghĩa là gì?</h3>`;
+
+    options.forEach(option=>{
+
+        html += `
+        <p>
+        <button
+class="quiz-option"
+data-answer="${option}"
+onclick="
+checkAnswer('${option}','${correct.meaning}')
+"
+style="
+padding:10px 15px;
+margin:5px 0;
+width:100%;
+border:none;
+border-radius:8px;
+background:#f5f5f5;
+cursor:pointer;
+font-size:16px;
+">
+        ${option}
+        </button>
+        </p>
+        `;
+    });
+
+    document.getElementById("quizContent").innerHTML =
+    html;
+}    
+
+function renderFlashcard(){
+
+    if(words.length===0){
+        return;
+    }
+
+    document.getElementById("flashcard").innerText =
+        words[currentCard].korean;
+
+    document.getElementById("meaningBox").innerHTML =
+        words[currentCard].pronunciation +
+        "<br>" +
+        words[currentCard].meaning;
+
+    document.getElementById("meaningBox").style.display =
+        showMeaning ? "block" : "none";
+}
+
+function toggleMeaning(){
+    showMeaning = !showMeaning;
+    renderFlashcard();
+}
+
+function nextCard(){
+
+    if(words.length===0) return;
+
+    currentCard++;
+
+    if(currentCard >= words.length){
+        currentCard = 0;
+    }
+
+    showMeaning = false;
+    renderFlashcard();
+}
+
+function prevCard(){
+
+    if(words.length===0) return;
+
+    currentCard--;
+
+    if(currentCard < 0){
+        currentCard = words.length - 1;
+    }
+
+    showMeaning = false;
+    renderFlashcard();
+}   
+function deleteAllWords(){
+
+    if(!confirm("Bạn có chắc muốn xóa toàn bộ từ vựng không?")){
+        return;
+    }
+
+    words = [];
+
+    localStorage.removeItem("words");
+
+    renderWords();
+
+    currentCard = 0;
+    showMeaning = false;
+
+    document.getElementById("flashcard").innerText =
+    "Chưa có từ vựng";
+
+    document.getElementById("meaningBox").style.display =
+    "none";
+
+    alert("Đã xóa toàn bộ từ vựng!");
+}  
+
+function shuffleQuiz(){
+
+    quizOrder = [];
+
+    for(let i=0;i<words.length;i++){
+        quizOrder.push(i);
+    }
+
+    quizOrder.sort(
+        () => Math.random()-0.5
+    );
+
+    quizPosition = 0;
+}
+
+function shuffleChina(){
+
+    chinaOrder = [];
+
+    for(let i=0;i<words.length;i++){
+        chinaOrder.push(i);
+    }
+
+    chinaOrder.sort(
+        () => Math.random() - 0.5
+    );
+
+    chinaPosition = 0;
+}
+
+function nextChinaQuestion(){
+
+    if(words.length === 0){
+        return;
+    }
+
+    if(
+        chinaOrder.length === 0 ||
+        chinaPosition >= chinaOrder.length
+    ){
+        shuffleChina();
+    }
+
+    currentChinaWord =
+    words[
+        chinaOrder[chinaPosition]
+    ];
+
+    chinaPosition++;
+
+    document
+    .getElementById("chinaQuestion")
+    .innerText =
+    currentChinaWord.meaning;
+
+    document
+    .getElementById("chinaAnswer")
+    .value = "";
+
+    document
+    .getElementById("chinaResult")
+    .innerHTML = "";
+
+    document
+    .getElementById("chinaNextBtn")
+    .style.display = "none";
+}
+
+function checkChinaAnswer(){
+
+    if(!currentChinaWord){
+        return;
+    }
+
+    const answer =
+    document
+    .getElementById("chinaAnswer")
+    .value
+    .trim();
+
+    if(
+        answer ===
+        currentChinaWord.korean
+    ){
+
+        document
+        .getElementById("chinaResult")
+        .innerHTML = `
+        ✅ Correct<br><br>
+        ${currentChinaWord.korean}<br>
+        ${currentChinaWord.pronunciation}
+        `;
+
+        document
+        .getElementById("chinaNextBtn")
+        .style.display = "inline-block";
+
+    }else{
+
+        document
+        .getElementById("chinaResult")
+        .innerHTML =
+        "❌ Incorrect";
+
+    }
+}
+
+function showChinaAnswer(){
+
+    if(!currentChinaWord){
+        return;
+    }
+
+    document
+    .getElementById("chinaResult")
+    .innerHTML = `
+    📖 Đáp án<br><br>
+    ${currentChinaWord.korean}<br>
+    ${currentChinaWord.pronunciation}
+    `;
+
+    document
+    .getElementById("chinaNextBtn")
+    .style.display = "inline-block";
+}
+    
+renderWords();
+renderFlashcard();
+nextChinaQuestion();
+function checkAnswer(selected, correct){
+
+if(answered) return;
+
+answered = true;
+    if(selected === correct){
+
+    correctCount++;
+
+    document.getElementById("quizResult").innerHTML =
+    "✅ Chính xác!";
+
+    document.getElementById("quizResult").style.color =
+    "green";
+
+}else{
+
+    wrongCount++;
+
+    document.getElementById("quizResult").innerHTML =
+    "❌ Sai rồi!";
+
+    document.getElementById("quizResult").style.color =
+    "red";
+}
+
+document.getElementById("quizScore").innerHTML =
+`✅ Đúng: ${correctCount} | ❌ Sai: ${wrongCount}`;
+let buttons =
+document.querySelectorAll(".quiz-option");
+
+buttons.forEach(btn => {
+
+    btn.disabled = true;
+
+    if(btn.dataset.answer === correct){
+        btn.style.background = "#4CAF50";
+        btn.style.color = "white";
+    }
+
+    if(
+        btn.dataset.answer === selected &&
+        selected !== correct
+    ){
+        btn.style.background = "#f44336";
+        btn.style.color = "white";
+    }
+
+});
+document.getElementById("nextQuizBtn").style.display =
+"inline-block";
+
+}    
 </script>
 
-</body>
 
+
+  
+</body>
 </html>
